@@ -16,6 +16,7 @@ public class BaseTest {
 
     @BeforeSuite
     public void beforeSuite() {
+
     }
 
     @AfterSuite

@@ -18,11 +18,11 @@ public class DriverFactory {
                 System.setProperty("webdriver.gecko.driver", "drivers\\geckodriver.exe");
                 driver = new FirefoxDriver();
             } else if ("chrome".equals(driverName)) {
-                System.setProperty("webdriver.chrome.driver", "drivers\\chromedriver.exe");
+                System.setProperty("webdriver.chrome.driver", "drivers\\chromedriver83.exe");
                 driver = new ChromeDriver();
             }
         } else {
-            System.setProperty("webdriver.chrome.driver", "drivers\\chromedriver.exe");
+            System.setProperty("webdriver.chrome.driver", "drivers\\chromedriver83.exe");
             driver = new ChromeDriver();
         }
         driver.manage().window().maximize();
