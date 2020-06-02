@@ -6,6 +6,5 @@ public class SendingLetterHelper extends SendingLetterPage {
 
     public void sendingConfirmation() {
         getLbEmailSentSuccess();
-        btnClickEmails();
     }
 }

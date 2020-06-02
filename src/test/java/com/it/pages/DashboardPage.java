@@ -17,8 +17,8 @@ public class DashboardPage extends BasePage {
         btnNewIncomingEmail.click();
     }
 
-    public String getLbUserEmail() {
-        return ldUserEmail.getText();
+    public String getLbUserEmail()  {
+      return ldUserEmail.getText();
     }
 
     public void btnClickCreateLetter() {

@@ -1,16 +1,18 @@
 package com.it.tests;
 
 import com.it.emails.EmailFactory;
-import com.it.users.UserFactory;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
 public class MyTest extends BaseTest {
+    private SoftAssert softAssert = new SoftAssert();
 
     @Test
-    public void test1() {
-        System.out.println(UserFactory.getRandomUsers(10));
+    public void test1() throws InterruptedException {
+        //System.out.println(UserFactory.getRandomUsers(10));
         app.login.login(validUser);
+        app.common.takeScreenShot();
         Assert.assertEquals(app.dashboard.getLbUserEmail(), validUser.email);
     }
 
@@ -19,8 +21,11 @@ public class MyTest extends BaseTest {
         System.out.println(EmailFactory.getRandomEmails(10));
         app.dashboard.btnClickCreateLetter();
         app.createLetter.sendEmail(validEmail);
-        app.sendingLetter.sendingConfirmation();
+        softAssert.assertEquals(app.sendingLetter.getLbEmailSentSuccess(), "Письмо успешно отправлено адресатам");
+        app.sendingLetter.btnClickEmails();
         app.dashboard.btnClickNewEmail();
-        Assert.assertEquals(app.newIncomingEmail.getLbEmailRecipient(), validEmail.emailRecipient);
+        app.common.takeScreenShot();
+        softAssert.assertEquals(app.newIncomingEmail.getLbEmailRecipient(), validEmail.emailRecipient);
+        softAssert.assertAll();
     }
 }
