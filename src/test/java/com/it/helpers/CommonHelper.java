@@ -10,4 +10,5 @@ public class CommonHelper extends BasePage {
     public void takeScreenShot() {
         driver.takeSnapShot();
     }
+
 }

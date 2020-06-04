@@ -3,6 +3,7 @@ package com.it.driver;
 import io.qameta.allure.Allure;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
+import org.openqa.selenium.logging.LogType;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.File;
@@ -54,7 +55,7 @@ public class MyDriver implements WebDriver {
     @Override
     public List<WebElement> findElements(By by) {
         List<WebElement> webElements = new ArrayList<>();
-        driver.findElements(by).forEach(s->
+        driver.findElements(by).forEach(s ->
                 webElements.add(new WrappedWebElement(s))
         );
         return webElements;
@@ -145,12 +146,40 @@ public class MyDriver implements WebDriver {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
         Path content = Paths.get("build//screenshot//screen" + count + ".png");
         try (InputStream is = Files.newInputStream(content)) {
             Allure.addAttachment("My attachment", is);
         } catch (IOException e) {
             //NOP
         }
+
+        Path logs = Paths.get("src\\test\\resources\\log4j.properties");
+        try (InputStream is = Files.newInputStream(logs)) {
+            Allure.addAttachment("My log", is);
+        } catch (IOException e) {
+            //NOP
+        }
         count++;
+
+/*
+        LogEntries logEntries = myDriver.manage().logs().get(LogType.DRIVER);
+
+        StringBuilder logs = new StringBuilder();
+
+
+        for (LogEntry entry : logEntries) {
+            logs.append(new Date(entry.getTimestamp()) + " "
+                    + entry.getLevel() + " " + entry.getMessage());
+            logs.append(System.lineSeparator());
+
+        }
+        System.out.println(logs);
+        Allure.addAttachment("Console log: ", String.valueOf(logs));*/
+
+        Allure.addAttachment("Console log: ", String.valueOf(myDriver.manage().logs().get(LogType.BROWSER).getAll()));
+
     }
+
+
 }

@@ -1,7 +1,9 @@
 package com.it.helpers;
 
+import com.it.pages.AllureLogger;
 import com.it.pages.LoginPage;
 import com.it.users.User;
+import io.qameta.allure.Allure;
 
 public class LoginHelper extends LoginPage {
 

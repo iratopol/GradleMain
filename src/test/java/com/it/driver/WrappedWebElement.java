@@ -1,6 +1,5 @@
 package com.it.driver;
 
-import org.junit.experimental.theories.Theories;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Coordinates;
 import org.openqa.selenium.interactions.Locatable;
